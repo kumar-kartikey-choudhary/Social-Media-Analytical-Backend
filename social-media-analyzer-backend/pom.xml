@@ -8,6 +8,7 @@
 		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.socialanalyzer</groupId>
 	<artifactId>social-media-analyzer-backend</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
