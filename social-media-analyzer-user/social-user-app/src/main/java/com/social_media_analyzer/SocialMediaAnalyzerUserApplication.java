@@ -7,11 +7,18 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @Slf4j
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.socialanalyzer")
 public class SocialMediaAnalyzerUserApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SocialMediaAnalyzerUserApplication.class, args);
+		try {
+			log.info("SocialMediaAnalyzerUserApplication service Starting");
+			SpringApplication.run(SocialMediaAnalyzerUserApplication.class, args);
+			log.info("SocialMediaAnalyzerUserApplication service started successfully....");
+		}catch (Exception e)
+		{
+			log.error("Error while starting SocialMediaAnalyzerUserApplication service..");
+		}
 	}
 
 }
