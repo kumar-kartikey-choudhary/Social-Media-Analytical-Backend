@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @ResponseBody
-@FeignClient(name = "social-account-service", path = "/socialAccounts")
+@FeignClient(name = "social-account-service", path = "/accounts" , url = "${account.url}")
 public interface SocialAccountController {
 
     @PostMapping(path = "/link")

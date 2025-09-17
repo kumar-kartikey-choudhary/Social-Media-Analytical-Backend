@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @ResponseBody
-@FeignClient(name = "social-post-service")
+@FeignClient(name = "social-post-service",url = "${post.url}")
 public interface SocialPostController {
 
     @PostMapping(path = "/save")

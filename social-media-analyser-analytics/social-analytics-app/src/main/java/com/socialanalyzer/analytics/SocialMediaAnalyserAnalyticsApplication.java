@@ -11,7 +11,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class SocialMediaAnalyserAnalyticsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SocialMediaAnalyserAnalyticsApplication.class, args);
+		try {
+			log.info("Starting SocialMediaAnalyserAnalyticsApplication service");
+			SpringApplication.run(SocialMediaAnalyserAnalyticsApplication.class, args);
+			log.info("Started SocialMediaAnalyserAnalyticsApplication service successfully..");
+		} catch (Exception e) {
+			log.info("Error while Starting SocialMediaAnalyserAnalyticsApplication service..");
+		}
 	}
 
 }

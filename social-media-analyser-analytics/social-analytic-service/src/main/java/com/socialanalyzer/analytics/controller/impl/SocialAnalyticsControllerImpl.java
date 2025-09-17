@@ -6,7 +6,11 @@ import com.socialanalyzer.analytics.repository.SocialAnalyticsRepository;
 import com.socialanalyzer.analytics.service.SocialAnalyticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping(path = "analytics")
 public class SocialAnalyticsControllerImpl implements SocialAnalyticsController {
 
     private final SocialAnalyticsService service;
@@ -18,12 +22,12 @@ public class SocialAnalyticsControllerImpl implements SocialAnalyticsController 
     }
 
     @Override
-    public ResponseEntity<SocialAnalyticsDTO> syncAnalytics(String postId) {
+    public ResponseEntity<SocialAnalyticsDTO> syncAnalytics(String postId) throws Exception {
         return ResponseEntity.ok(this.service.syncAnalytics(postId));
     }
 
     @Override
-    public ResponseEntity<SocialAnalyticsDTO> getAnalytics(String postId) {
+    public ResponseEntity<SocialAnalyticsDTO> getAnalytics(String postId) throws Exception {
         return ResponseEntity.ok(this.service.getAnalytics(postId));
     }
 }

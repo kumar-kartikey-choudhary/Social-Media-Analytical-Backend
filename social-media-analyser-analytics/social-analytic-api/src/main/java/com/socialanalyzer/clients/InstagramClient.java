@@ -17,16 +17,12 @@ public interface InstagramClient {
     @GetMapping(path = "/me/media")
     List<SocialPostDTO> getUserPosts(@RequestParam(name = "access_token") String accessToken);
 
-    @GetMapping(path = "/{mediaId}/postInsights")
+    @GetMapping(path = "/{mediaId}/insights")
     Map<String, Object> getPostsInsights(
             @PathVariable(name = "mediaId") String mediaId,
+            @RequestParam("metric") String metrics,
             @RequestParam(name = "access_token") String accessToken
     );
 
-    @GetMapping(path = "/{mediaId}/mediaInsights")
-    Map<String ,Object> getMediaInsights(
-            @PathVariable("mediaId") String mediaId,
-            @RequestParam("access_token") String accessToken
-    );
 
 }

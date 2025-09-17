@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @ResponseBody
-@FeignClient(name = "User/Auth-Service" , path = "users", primary = false)
+@FeignClient(name = "User/Auth-Service" , path = "users", primary = false, url = "${user.url}")
 public interface UserController {
 
     @PostMapping(path = "auth/register")

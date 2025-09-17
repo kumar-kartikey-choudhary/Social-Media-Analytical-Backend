@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ResponseBody
-@FeignClient(name = "social-analytics-service")
+@FeignClient(name = "social-analytics-service",url = "${analytics.url}")
 public interface SocialAnalyticsController {
 
     // Sync analytics from platform
     @PostMapping(path = "/posts/{postId}/analytics/sync")
-    ResponseEntity<SocialAnalyticsDTO>  syncAnalytics(@PathVariable(name = "postId") String postId);
+    ResponseEntity<SocialAnalyticsDTO>  syncAnalytics(@PathVariable(name = "postId") String postId) throws Exception;
 
 
     @GetMapping(path = "/posts/{postId}/analytics")
-    ResponseEntity<SocialAnalyticsDTO> getAnalytics(@PathVariable(name = "postId") String postId);
+    ResponseEntity<SocialAnalyticsDTO> getAnalytics(@PathVariable(name = "postId") String postId) throws Exception;
 
 
 

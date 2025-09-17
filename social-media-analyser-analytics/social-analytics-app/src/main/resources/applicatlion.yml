@@ -1,0 +1,22 @@
+#social:
+#  platform:
+#    TWITTER:
+#      client-id: ${TWITTER_CLIENT_ID}
+#      client-secret: ${TWITTER_CLIENT_SECRET}
+#      auth-url: https://twitter.com/i/oauth2/authorize
+#      token-url: https://api.twitter.com/2/oauth2/token
+#      redirect-url: http://localhost:9090/auth/callback/twitter
+#      api-base-url: https://api.twitter.com/2
+#      scope: tweet.read,users.read
+#      profile-api-url: https://api.twitter.com/2/users/me
+#
+#
+#    INSTAGRAM:
+#      client-id: ${INSTAGRAM_CLIENT_ID}
+#      client-secret: ${INSTAGRAM_CLIENT_SECRET}
+#      auth-url: https://api.instagram.com/oauth/authorize
+#      token-url: https://api.instagram.com/oauth/access_token
+#      redirect-url: http://localhost:9090/auth/callback/instagram
+#      api-base-url: https://graph.instagram.com
+#      scope: user_profile,user_media
+#      profile-api-url: https://graph.instagram.com/me

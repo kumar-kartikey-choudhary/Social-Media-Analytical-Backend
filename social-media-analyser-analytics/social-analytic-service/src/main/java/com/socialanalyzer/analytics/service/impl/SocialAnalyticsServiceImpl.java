@@ -61,7 +61,7 @@ public class SocialAnalyticsServiceImpl implements SocialAnalyticsService {
             * then map their metric : impression, reach , saved...
             * */
 
-            Map<String, Object> postsInsights = client.getPostsInsights(postId, socialAccountDto.getBody().getAccessToken());
+            Map<String, Object> postsInsights = client.getPostsInsights(postId, "impressions,reach,saved,likes,comments,shares",socialAccountDto.getBody().getAccessToken());
 
             List<Map<String, Object>> data = (List<Map<String, Object>>) postsInsights.get("data");
             if(data!= null)
@@ -86,45 +86,24 @@ public class SocialAnalyticsServiceImpl implements SocialAnalyticsService {
                             socialAnalytics.setSaves(value);
                             break;
 
+                        case "likes":
+                            socialAnalytics.setLikes(value);
+                            break;
+
+                        case "comments":
+                            socialAnalytics.setComments(value);
+                            break;
+
+                        case "shares":
+                            socialAnalytics.setShares(value);
+                            break;
+
                         default:
                             log.warn("Unknown media metric: {}", name);
                     }
                 }
             }
 
-            /*
-            * MediaInsights of the post : Likes , Comments , Shares
-            * @Fields : mediaId , accessToken
-            * then map the media insights
-            * */
-
-            Map<String, Object> mediaInsights = client.getMediaInsights(postId, socialAccountDto.getBody().getAccessToken());
-
-           List< Map<String, Object> > media = (List<Map<String, Object>>) mediaInsights.get("data");
-           if (media != null)
-           {
-               for (Map<String , Object> metric : media)
-               {
-                   String name = (String) metric.get("name");
-                   Object values = metric.get("value");
-                   Long value = values != null ? ((Number) values).longValue() : 0L;
-
-                   switch (name)
-                   {
-                       case "like_counts":
-                           socialAnalytics.setLikes(value);
-                           break;
-
-                       case "comment_counts":
-                           socialAnalytics.setComments(value);
-                           break;
-
-                       case "share_counts":
-                           socialAnalytics.setShares(value);
-                           break;
-                   }
-               }
-           }
            /*
            * Calculate engagementRate
            * first engagement = likes + comments + shares;
