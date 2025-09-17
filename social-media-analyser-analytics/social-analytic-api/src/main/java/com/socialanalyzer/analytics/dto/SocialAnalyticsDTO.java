@@ -14,6 +14,7 @@ public class SocialAnalyticsDTO {
 
     private String analyticsId;
     private String postId;
+    private String accountId;
     private Long likes;
     private Long comments;
     private Long shares;

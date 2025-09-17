@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO getById(String id) {
         log.info("Inside @class UserServiceImpl @method getById param id:{}",id);
         try{
-            if(StringUtils.isNotBlank(id))
+            if(StringUtils.isBlank(id))
             {
                 throw new IllegalArgumentException("User id must not be blank");
             }

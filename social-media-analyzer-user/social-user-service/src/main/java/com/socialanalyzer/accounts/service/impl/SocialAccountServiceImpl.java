@@ -43,7 +43,7 @@ public class SocialAccountServiceImpl implements SocialAccountService {
             return MapUtils.entityToDto(socialAccount, SocialAccountDTO.class);
 
         } catch (Exception e) {
-            throw new RuntimeException("Can not map dto to entity");
+            throw new RuntimeException("Failed to link social account");
         }
     }
 
@@ -79,5 +79,20 @@ public class SocialAccountServiceImpl implements SocialAccountService {
         SocialAccount socialAccount = repository.getByUserIdAndPlatform(userId, platform).orElseThrow(() -> new RuntimeException("Can not get social account with that userId and platform"));
 
         return MapUtils.entityToDto(socialAccount, SocialAccountDTO.class);
+    }
+
+    @Override
+    public SocialAccountDTO findByAccountId(String accountId) {
+        log.info("Inside @class SocialAccountServiceImpl @method findByAccountId @Param accountId :{} ,  ", accountId);
+        if(StringUtils.isBlank(accountId))
+        {
+            throw new IllegalCallerException("Social Account Id can not be null");
+        }
+        try {
+            SocialAccount socialAccount = repository.findById(accountId).orElseThrow(() -> new RuntimeException("Social Account can not found by this accountId :" + accountId));
+            return MapUtils.entityToDto(socialAccount, SocialAccountDTO.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Link to social Account failed...");
+        }
     }
 }

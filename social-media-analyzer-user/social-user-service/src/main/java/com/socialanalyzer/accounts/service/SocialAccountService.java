@@ -12,4 +12,6 @@ public interface SocialAccountService {
     List<SocialAccountDTO> getUserAccounts(String userId);
 
     SocialAccountDTO getByUserIdAndPlatform(String userId, Platform platform) throws Exception;
+
+    SocialAccountDTO findByAccountId(String accountId);
 }

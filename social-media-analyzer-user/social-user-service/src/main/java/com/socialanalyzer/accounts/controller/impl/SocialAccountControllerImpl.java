@@ -30,12 +30,17 @@ public class SocialAccountControllerImpl implements SocialAccountController {
     }
 
     @Override
+    public ResponseEntity<SocialAccountDTO> findByAccountId(String accountId) {
+        return ResponseEntity.ok(this.service.findByAccountId(accountId));
+    }
+
+    @Override
     public ResponseEntity<List<SocialAccountDTO>> getUserAccounts(String userId) {
         return ResponseEntity.ok(this.service.getUserAccounts(userId));
     }
 
     @Override
-    public ResponseEntity<SocialAccountDTO> getByUserIdAndPlatform(String userId, Platform platform) {
+    public ResponseEntity<SocialAccountDTO> getByUserIdAndPlatform(String userId, Platform platform) throws Exception {
         return ResponseEntity.ok(this.service.getByUserIdAndPlatform(userId,platform));
     }
 }

@@ -16,10 +16,14 @@ public interface SocialAccountController {
     @PostMapping(path = "/link")
     ResponseEntity<SocialAccountDTO> linkAccount(@RequestBody SocialAccountDTO socialAccountDTO);
 
+
+    @GetMapping(path = "getByAccountId/{accountId}")
+    ResponseEntity<SocialAccountDTO> findByAccountId(@PathVariable(name = "accountId") String accountId);
+
     @GetMapping(path = "getByUserId/{userId}")
     ResponseEntity<List<SocialAccountDTO>> getUserAccounts(@PathVariable(name = "userId") String userId);
 
 
     @GetMapping(path = "getByUserIdAndPlatform/{userId}/{platform}")
-    ResponseEntity<SocialAccountDTO> getByUserIdAndPlatform(@PathVariable(name = "userId") String userId, @PathVariable(name = "platform")Platform platform);
+    ResponseEntity<SocialAccountDTO> getByUserIdAndPlatform(@PathVariable(name = "userId") String userId, @PathVariable(name = "platform")Platform platform) throws Exception;
 }

@@ -20,6 +20,11 @@ public class SocialAnalytics {
     @Column(name = "POST_ID", columnDefinition = "CHAR(50) NOT NULL")
     private String postId;
 
+
+    @NotNull
+    @Column(name = "ACCOUNT_ID", columnDefinition = "CHAR(50) NOT NULL")
+    private String accountId;
+
     @Column(name = "LIKES")
     private Long likes;
 
