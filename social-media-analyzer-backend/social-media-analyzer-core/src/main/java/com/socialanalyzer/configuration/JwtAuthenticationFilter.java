@@ -17,6 +17,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
+
 @Slf4j
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -35,7 +37,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         log.info("Inside @class JwtAuthenticationFilter @method doFilterInternal");
         String header = request.getHeader("Authorization");
+        String requestURI = request.getRequestURI();
 
+        if( requestURI.startsWith("/auth/"))
+        {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String username = null ;
         String token = null;
 
@@ -52,7 +60,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             log.warn("Authorization header is missing or does not start with Bearer");
         }
 
-        if(username != null && SecurityContextHolder.getContext() == null)
+        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null)
         {
             try {
                 UserDetails userDetails = detailService.loadUserByUsername(username);
@@ -72,6 +80,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 return;
             }
         }
-
+        filterChain.doFilter(request, response);
     }
 }
