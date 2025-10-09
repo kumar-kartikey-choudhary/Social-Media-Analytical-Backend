@@ -17,8 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
-
 @Slf4j
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -41,6 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if( requestURI.startsWith("/auth/"))
         {
+            log.info("Skipping JWT filter for request: {}", requestURI);
             filterChain.doFilter(request, response);
             return;
         }
