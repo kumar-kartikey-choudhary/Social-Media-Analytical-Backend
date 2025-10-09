@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping
+@RequestMapping(path = "auth")
 public class UserControllerImpl implements UserController {
 
     private final UserService userService;

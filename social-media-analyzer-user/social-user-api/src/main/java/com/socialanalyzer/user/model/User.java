@@ -2,7 +2,6 @@ package com.socialanalyzer.user.model;
 
 import com.socialanalyzer.enums.Role;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

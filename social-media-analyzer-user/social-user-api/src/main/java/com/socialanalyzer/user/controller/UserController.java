@@ -9,13 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @ResponseBody
-@FeignClient(name = "User/Auth-Service" , path = "users", primary = false, url = "${user.url}")
+@FeignClient(name = "User/Auth-Service" , primary = false, url = "${user.url}")
 public interface UserController {
 
-    @PostMapping(path = "auth/register")
+    @PostMapping(path = "/register")
     ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO);
 
-    @PostMapping(path = "auth/login")
+    @PostMapping(path = "/login")
     ResponseEntity<LoginResponse> request(@RequestBody LoginRequest loginRequest);
 
     @GetMapping(path = "find/{id}")
